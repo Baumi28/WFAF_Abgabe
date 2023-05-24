@@ -8,7 +8,7 @@ export class Entry {
               public title: string,
               public description: string,
               public padlet_id: number,
-              public comment?: Comment[],
+              public comment?: any[],
               public rating?: Rating[]) {
   }
 }

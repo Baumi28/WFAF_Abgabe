@@ -23,5 +23,6 @@ export class PadletListComponent implements OnInit {
     this.bs.getAll().subscribe(
       res => this.padlets = res
     );
+
   }
 }

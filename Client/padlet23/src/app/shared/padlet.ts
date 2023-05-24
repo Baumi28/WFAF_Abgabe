@@ -6,6 +6,7 @@ export class Padlet {
   constructor(public id:number,
               public title: string,
               public isPublic: boolean,
-              public entries?: Entry[]) {
+              public entries?: Entry[],
+              public created_at?: Date,) {
   }
 }

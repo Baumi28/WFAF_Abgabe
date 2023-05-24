@@ -13,6 +13,15 @@ use Illuminate\Support\Facades\DB;
 
 class RatingController extends Controller
 {
+
+    public function index(): JsonResponse
+    {
+        /*
+         * load all comments and relations with eager loading
+         */
+        $ratings = Rating::with('entry')->get();
+        return response()->json($ratings, 200);
+    }
     public function createRating(Request $request): JsonResponse
     {
         //$request = $this->parseRequest($request);

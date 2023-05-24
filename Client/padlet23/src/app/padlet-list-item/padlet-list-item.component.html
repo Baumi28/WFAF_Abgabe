@@ -1,9 +1,20 @@
-<div class="content">
-  <div class="header">{{padlet.title}}</div>
-  <div class="description">Dieses Padlet ist öffentlich: {{padlet.isPublic}}
-    <button class="ui tiny red labeled icon button" (click)="removePadlet()"><i class="remove icon"></i>Padlet löschen</button>
-    <a class="ui tiny yellow labeled icon button" [routerLink]="['../admin', padlet.id]">
+<div class="ui grid">
+  <div class="wide column">
+    <h3 *ngIf="padlet.isPublic == true">Öffentlich</h3>
+    <h3 *ngIf="padlet.isPublic == false">Nicht öffentlich</h3>
+    <div class="header  center aligned">
+      <h2>Titel: {{padlet.title}}</h2>
+      <h4>Erstellungsdatum: {{padlet.created_at | date:'shortDate'}}</h4>
+    </div>
+
+    <button *ngIf="authService.isLoggedIn()" class="ui tiny red labeled icon button" (click)="removePadlet()"><i
+      class="remove icon"></i>Padlet löschen
+    </button>
+    <a *ngIf="authService.isLoggedIn()" class="ui tiny yellow labeled icon button"
+       [routerLink]="['../admin', padlet.id]">
       <i class="write icon"></i>Padlet bearbeiten
     </a>
+    <a class="ui tiny green labeled icon button" [routerLink]="['../padlet', padlet.id]">
+      <i class="eye icon"></i>Padlet ansehen</a>
   </div>
 </div>

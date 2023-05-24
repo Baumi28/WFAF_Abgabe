@@ -15,7 +15,7 @@ class CommentController extends Controller
     public function index(): JsonResponse
     {
         /*
-         * load all padlets and relations with eager loading
+         * load all comments and relations with eager loading
          */
         $comments = Comment::with('entry')->get();
         return response()->json($comments, 200);

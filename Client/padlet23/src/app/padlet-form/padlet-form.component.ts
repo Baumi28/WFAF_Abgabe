@@ -60,13 +60,20 @@ export class PadletFormComponent implements OnInit {
   submitForm() {
     console.log(this.padletForm.value);
     const padlet: Padlet = PadletFactory.fromObject(this.padletForm.value);
-/*
-    if (this.isUpdatingPadlet){
-      this.bs.update(padlet).subscribe(res=>{
+
+    if (this.isUpdatingPadlet) {
+
+      this.bs.updatePadlet(padlet, this.route.snapshot.params["id"]).subscribe(res => {
+        console.log("Bin im Update");
+        this.router.navigate(["/padlets"])
+
+      });
+    } else {
+      this.bs.createPadlet(padlet).subscribe(res => {
+        console.log("Bin im Create");
         this.router.navigate(["/padlets"])
       })
     }
-    */
   }
 
 

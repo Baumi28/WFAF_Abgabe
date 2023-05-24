@@ -1,10 +1,8 @@
-<div class="ui three item tabs menu">
+<div class="ui {{authService.isLoggedIn()?'four':'three'}} item tabs menu">
   <a routerLink="home" routerLinkActive="active" class="item">Home</a>
   <a routerLink="padlets" routerLinkActive="active" class="item">Padlets</a>
-  <a routerLink="admin" routerLinkActive="active" class="item">Administration</a>
+  <a *ngIf="authService.isLoggedIn()" routerLink="admin" routerLinkActive="active" class="item">Padlet erstellen</a>
+  <a routerLink="login" routerLinkActive="active" class="item">{{getLoginLabel()}}</a>
 </div>
 <router-outlet></router-outlet>
 
-<div class="ui">
-  <h3>Padlet App created by KWM</h3>
-</div>

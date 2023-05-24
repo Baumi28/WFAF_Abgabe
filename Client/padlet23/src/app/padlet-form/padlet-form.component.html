@@ -1,13 +1,15 @@
-<h1>Padletformular</h1>
-<form class="ui large form" [formGroup]="padletForm" (ngSubmit)="submitForm()">
-  <div class="field">
-    <label>Padlettitel</label>
-    <input formControlName="title">
-    <div *ngIf="errors['title']" class="ui negative message">{{errors['title']}}</div>
-  </div>
-  <div class="field">
-    <label>Soll dieses Padlet öffentlich sein? (0 = nicht öffentlich 1 = öffentlich)</label>
-    <input type="number" formControlName="isPublic" min="0" max="1">
-  </div>
-  <button type="submit" class="ui button" [disabled]="padletForm.invalid">Speichern</button>
-</form>
+<div class="ui raised very padded text container segment">
+  <h1 class="header">Erstellen eines Padlets</h1>
+  <form class="ui equal width large form" [formGroup]="padletForm" (ngSubmit)="submitForm()">
+    <div class="field">
+      <label>Padlettitel</label>
+      <input formControlName="title">
+      <div *ngIf="errors['title']" class="ui negative message">{{errors['title']}}</div>
+    </div>
+    <div class="field">
+      <label>Soll dieses Padlet öffentlich sein? (0 = nicht öffentlich 1 = öffentlich)</label>
+      <input type="number" formControlName="isPublic" min="0" max="1">
+    </div>
+    <button type="submit" class="ui button" [disabled]="padletForm.invalid">Speichern</button>
+  </form>
+</div>

@@ -1,5 +1,6 @@
 import {Entry, Padlet} from "./padlet";
 
+
 export class PadletFactory {
 
   static empty():Padlet {

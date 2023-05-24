@@ -1,15 +1,50 @@
-<div class="ui grid" *ngIf="padlet != null">
+<div class="ui raised very padded text container segment" *ngIf="padlet != null">
   <h1>Das sind die Einträge von "{{padlet.title}}":</h1>
+  <h4>Erstellungsdatum {{padlet.created_at | date:'shortDate'}}</h4>
   <div class="two wide column">
     <span class="ui text" *ngIf="entries"></span><br><br>
     <div *ngIf="entries">
       <div *ngFor="let entry of entries" class="two cards">
-        <b>{{ entry.title }}</b><br><br> {{ entry.description }}
-        <button class="ui tiny red labeled icon button" (click)="removeEntry(entry.id)"><i class="remove icon"></i>Entry löschen</button>
+        <h3><b>{{ entry.title }}</b></h3><br><br> {{ entry.description }}
+
+
+        <h3>Kommentare:</h3>
+        <div *ngFor="let comment of entry.comment">
+          <p>{{ comment.content }}</p>
+        </div>
+
+        <h3>Bewertungen:</h3>
+        <div *ngFor="let rating of entry.rating">
+          <span [innerHTML]="getRatingIcon(rating.rating)"></span>
+        </div>
+
+<br>
+        <button *ngIf="authService.isLoggedIn()" class="ui tiny red labeled icon button"
+                (click)="removeEntry(entry.id)"><i class="remove icon"></i>Entry löschen
+        </button>
+
         <br><br>
       </div>
     </div>
   </div>
+  <button *ngIf="authService.isLoggedIn()" class="ui tiny green labeled icon button"
+          (click)="addEntry()"><i class="add icon"></i>Entry erstellen
+  </button>
+  <form *ngIf="showAddEntryForm" class="ui equal width large form" [formGroup]="addEntryForm" (ngSubmit)="submitForm()">
+    <div class="field">
+      <label>Titel von neuem Entry</label>
+      <input formControlName="title">
+      <!--div *ngIf="errors['title']" class="ui negative message">{{errors['title']}}</div-->
+    </div>
+    <div class="field">
+      <label>Beschreibung</label>
+      <input type="text" formControlName="description">
+      <input type="hidden" formControlName="padlet_id">
+    </div>
+    <button type="submit" class="ui button" [disabled]="addEntryForm.invalid">Speichern</button>
+  </form>
+
+  <button class="ui green button" routerLink="/padlets">Zurück zur Padletliste</button>
 </div>
 
-<button class="ui red button" routerLink="/padlets">Zurück zur Padletliste</button>
+

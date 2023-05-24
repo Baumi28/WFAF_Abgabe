@@ -4,6 +4,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {PadletFactory} from "../shared/padlet-factory";
 import {PadletAppService} from "../shared/padlet-app.service";
 import {ToastrService} from "ngx-toastr";
+import {AuthenticationService} from "../shared/authentication.service";
 
 
 @Component({
@@ -13,7 +14,11 @@ import {ToastrService} from "ngx-toastr";
 })
 export class PadletListItemComponent {
 
-  constructor(private router: Router, private bs:PadletAppService, private route: ActivatedRoute, private toastr: ToastrService) {
+  constructor(private router: Router,
+              private bs:PadletAppService,
+              private route: ActivatedRoute,
+              private toastr: ToastrService,
+              public authService:AuthenticationService) {
   }
 
   @Input() padlet = PadletFactory.empty();

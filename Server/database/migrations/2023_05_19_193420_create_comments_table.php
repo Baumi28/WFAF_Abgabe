@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
-            $table->text('content')->nullable(false); //Textfeld beim Kommentar darf nicht leer sein
+            $table->string('content')->nullable(false); //Textfeld beim Kommentar darf nicht leer sein
             $table->foreignId('entry_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });

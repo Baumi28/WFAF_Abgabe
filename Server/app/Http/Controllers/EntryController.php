@@ -30,6 +30,16 @@ class EntryController extends Controller
         return response()->json($comments, 200);
     }
 
+    public function showRatingsOfEntry(int $id): JsonResponse
+    {
+        /*
+         * load all comments of a certain entry
+         */
+        $entry = Entry::with(['ratings'])->where('id', $id)->first();
+        $ratings = $entry->ratings;
+        return response()->json($ratings, 200);
+    }
+
     public function showEntriesOfPadlet(int $id): JsonResponse
     {
         /*
