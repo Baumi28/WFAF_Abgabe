@@ -1,0 +1,15 @@
+<div class="ui grid" *ngIf="padlet != null">
+  <h1>Das sind die Einträge von "{{padlet.title}}":</h1>
+  <div class="two wide column">
+    <span class="ui text" *ngIf="entries"></span><br><br>
+    <div *ngIf="entries">
+      <div *ngFor="let entry of entries" class="two cards">
+        <b>{{ entry.title }}</b><br><br> {{ entry.description }}
+        <button class="ui tiny red labeled icon button" (click)="removeEntry(entry.id)"><i class="remove icon"></i>Entry löschen</button>
+        <br><br>
+      </div>
+    </div>
+  </div>
+</div>
+
+<button class="ui red button" routerLink="/padlets">Zurück zur Padletliste</button>
